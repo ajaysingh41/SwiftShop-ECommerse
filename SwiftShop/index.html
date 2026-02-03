@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SwiftShop | Premium E-Commerce</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body data-theme="light">
+
+    <div id="login-page">
+        <div class="login-card">
+            <h1>SwiftShop</h1>
+            <p style="color: var(--secondary); margin-bottom: 30px;">Welcome back! Please enter your details.</p>
+            <form id="login-form" onsubmit="handleLogin(event)" style="display: flex; flex-direction: column;">
+                <input type="email" id="login-email" placeholder="Email Address" required>
+                <input type="password" id="login-pass" placeholder="Password" required>
+                <button type="submit" class="btn btn-primary" style="padding: 16px;">Sign In</button>
+            </form>
+            <p style="margin-top: 20px; font-size: 0.85rem; color: var(--secondary);">Don't have an account? <span style="color: var(--primary); cursor: pointer; font-weight: 600;">Sign up</span></p>
+        </div>
+    </div>
+
+    <div id="app-content" style="display:none;">
+        <nav>
+            <div class="container nav-content">
+                <div class="logo" onclick="showSection('home')">SWIFTSHOP</div>
+                <ul class="nav-links">
+                    <li onclick="showSection('home')">Home</li>
+                    <li onclick="showSection('shop')">Shop</li>
+                    <li onclick="showSection('cart')">Cart</li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn">🌙</button>
+                    <div class="cart-icon" onclick="showSection('cart')">
+                        🛒 <span class="cart-badge" id="cart-count">0</span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <section id="home" class="active">
+            <div class="container">
+                <div class="hero">
+                    <div>
+                        <h1>Shop Smart,<br>Live Better.</h1>
+                        <p style="margin-bottom: 25px; opacity: 0.9;">Premium products curated just for you.</p>
+                        <button class="btn" style="background: white; color: var(--primary);" onclick="showSection('shop')">Explore Shop</button>
+                    </div>
+                </div>
+                <h2 style="margin-bottom: 30px;">Featured Products</h2>
+                <div class="product-grid" id="featured-grid"></div>
+            </div>
+        </section>
+
+        <section id="shop">
+            <div class="container">
+                <div style="display:flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; margin-bottom: 40px;">
+                    <input type="text" id="search-input" placeholder="Search products..." oninput="filterProducts()" style="width: 300px; margin-bottom: 0;">
+                    <div style="display:flex; gap: 10px;" id="cat-filters">
+                        <button class="btn btn-outline active" onclick="filterCategory('all', this)">All</button>
+                        <button class="btn btn-outline" onclick="filterCategory('electronics', this)">Electronics</button>
+                        <button class="btn btn-outline" onclick="filterCategory('fashion', this)">Fashion</button>
+                    </div>
+                </div>
+                <div class="product-grid" id="shop-grid"></div>
+            </div>
+        </section>
+
+        <section id="product-detail">
+            <div class="container" id="detail-content"></div>
+        </section>
+
+        <section id="cart">
+            <div class="container">
+                <h2 style="margin-bottom:30px;">Your Cart</h2>
+                <div id="cart-items"></div>
+                <div id="cart-summary" style="margin-top:30px; border-top: 1px solid var(--border); padding-top: 20px;"></div>
+            </div>
+        </section>
+
+        <section id="checkout">
+            <div class="container">
+                <h2 style="text-align:center; margin-bottom: 30px;">Checkout</h2>
+                <form id="checkout-form" onsubmit="handleOrder(event)" style="max-width: 500px; margin: 0 auto; display: flex; flex-direction: column;">
+                    <input type="text" placeholder="Full Name" required>
+                    <input type="email" placeholder="Email" required>
+                    <input type="text" placeholder="Address" required>
+                    <button type="submit" class="btn btn-primary">Confirm Order</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="success">
+            <div class="container" style="text-align: center;">
+                <div style="font-size: 4rem;">✅</div>
+                <h2>Order Successful!</h2>
+                <p style="margin: 20px 0; color: var(--secondary);">Your items are on the way.</p>
+                <button class="btn btn-outline" onclick="showSection('home')">Back to Home</button>
+            </div>
+        </section>
+
+        <footer>
+            <div class="container" style="text-align: center; opacity: 0.7; font-size: 0.9rem;">
+                © 2026 SwiftShop Project. All rights reserved.
+            </div>
+        </footer>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
